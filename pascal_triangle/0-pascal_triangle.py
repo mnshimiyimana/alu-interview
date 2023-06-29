@@ -3,39 +3,14 @@
 Print Pascal's Triangle
 """
 
+
 def pascal_triangle(n):
-
-  
-    """
-    Generate Pascal's triangle up to level n.
-
-    Args:
-        n (int): The level of Pascal's triangle to generate.
-
-    Returns:
-        list: A list of lists representing Pascal's triangle up to level n.
-              Each inner list represents a row of the triangle, with the
-              values in the row.
-
-        If n <= 0, an empty list is returned.
-
-    Raises:
-        None.
-    """
-
-    if n <= 0:
-        return []
-
-    triangle = [[1]]
-
-    for i in range(1, n):
-        row = [1]
-        prev_row = triangle[i-1]
-
-        for j in range(1, i):
-            row.append(prev_row[j-1] + prev_row[j])
-
-        row.append(1)
-        triangle.append(row)
-
-    return triangle
+    """returns Pascal's triangle in a list of list"""
+    my_list = []
+    if (n <= 0):
+        return my_list
+    my_list.append([1])
+    for i in range(n - 1):
+        my_list.append([1] + [my_list[i][a] + my_list[i][a + 1]
+                              for a in range(len(my_list[i]) - 1)] + [1])
+    return my_list
